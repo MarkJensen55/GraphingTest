@@ -22,24 +22,23 @@ namespace GraphingTest.Models
 			}
 
             var plotBand =  new YAxisPlotBands();
-            plotBand.Color = System.Drawing.Color.Green;
-            plotBand.From = 30;
-            plotBand.To=80;
+            plotBand.Color = System.Drawing.Color.LightGreen;
+            plotBand.From = 45;
+            plotBand.To=100;
 
             var whyAxis = new YAxis();
-            whyAxis.PlotBands[1] = plotBand;
-           // whyAxis.Title.Text = "mg/dcl";
+            whyAxis.PlotBands = new[] { plotBand };
+            var myTitle = new YAxisTitle();
+            myTitle.Text = "Some Units";
+            whyAxis.Title =  myTitle;
 
 
             var chart = new Highcharts("chart");
-             chart.InitChart(new Chart { DefaultSeriesType = ChartTypes.Line });
+            chart.InitChart(new Chart { DefaultSeriesType = ChartTypes.Line });
             chart.SetTitle(new Title { Text = "Glucose Level" });
             chart.SetXAxis(new XAxis { Categories = xdataString });
-            chart.SetYAxis(whyAxis );
+            chart.SetYAxis(whyAxis);
             chart.SetSeries(new[] {new Series{Name="Glucose Level", Data = new Data(ydata)}});
-            
-            
-            
 
             return chart;
         }
