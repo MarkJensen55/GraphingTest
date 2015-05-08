@@ -26,6 +26,8 @@ namespace GraphingTest.Models
             plotBand.From = 45;
             plotBand.To=100;
 
+
+
             var whyAxis = new YAxis();
             whyAxis.PlotBands = new[] { plotBand };
             var myTitle = new YAxisTitle();
