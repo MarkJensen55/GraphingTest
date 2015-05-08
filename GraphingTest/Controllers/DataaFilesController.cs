@@ -61,22 +61,11 @@ namespace GraphingTest
         //GET: 
         public ActionResult Graph()
         {
-            // var data = from d in db.DataaFiles
-            //            select d;
-            // data = data.OrderBy(d => d.EntryDate);
-            // var xdata = data.Select(x => x.EntryDate).ToArray();
-            // var ydata = data.Select(y => new object[] { y.Value }).ToArray();
-            
-            var dataList = new List<DataaFile>();
             var data = from d in db.DataaFiles
                        select d;
             data = data.OrderBy(d => d.EntryDate);
-            foreach (var dataItem in data)
-            {
-                dataList.Add(dataItem);
-            }
-            var xdata = dataList.Select(x => x.EntryDate).ToArray();
-            var ydata = dataList.Select(y => new object[] { y.Value }).ToArray(); 
+            var xdata = data.Select(x => x.EntryDate).ToArray();
+            var ydata = data.AsEnumerable().Select(y => new object[] { y.Value }).ToArray(); 
 
             var ViewGraph = new TestChart();
             var ViewGraph2 = ViewGraph.CreateChart(xdata, ydata);
